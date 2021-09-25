@@ -1,15 +1,4 @@
-import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-
-const Index = (props) => (
-  <View style={styles.item}>
-    <View style={styles.itemLeft}>
-      <View style={styles.square} />
-      <Text style={styles.itemTexts}>{props.text}</Text>
-    </View>
-    <View style={styles.circular} />
-  </View>
-);
+import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   item: {
@@ -46,4 +35,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Index;
+export default styles;
