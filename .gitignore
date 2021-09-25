@@ -13,3 +13,7 @@ web-build/
 .DS_Store
 
 .idea/
+
+.env
+.env.*
+!.env.template

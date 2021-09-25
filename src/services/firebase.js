@@ -5,14 +5,15 @@ import * as firebase from 'firebase';
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: 'SHOULD_BE_IN_DOTENVIRONMENT',
-  authDomain: 'SHOULD_BE_IN_DOTENVIRONMENT',
-  projectId: 'SHOULD_BE_IN_DOTENVIRONMENT',
-  storageBucket: 'SHOULD_BE_IN_DOTENVIRONMENT',
-  messagingSenderId: 'SHOULD_BE_IN_DOTENVIRONMENT',
-  appId: 'SHOULD_BE_IN_DOTENVIRONMENT',
+  apiKey: process.env.FIREBASE_API_KEY,
+  authDomain: process.env.FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.FIREBASE_PROJECT_ID,
+  storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.FIREBASE_APP_ID,
 };
 
+// eslint-disable-next-line no-unused-vars
 const app = firebase.apps.length === 0 ? firebase.initializeApp(firebaseConfig) : firebase.app();
 
 const auth = firebase.auth();

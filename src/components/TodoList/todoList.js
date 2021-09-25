@@ -18,7 +18,7 @@ const TodoList = () => {
   const [task, setTask] = useState();
   const [taskItems, setTaskItems] = useState([]);
   const { currentUser } = auth;
-  const userLogged = currentUser?.email;
+  const userLogged = currentUser.email;
 
   const navigation = useNavigation();
 
@@ -53,6 +53,7 @@ const TodoList = () => {
           {/* eslint-disable-next-line react/no-unescaped-entities */}
           <View style={styles.navWrapper}>
             <Text style={styles.sectionTitle}>
+              {/* eslint-disable-next-line react/no-unescaped-entities */}
               Today's tasks of {userLogged.substring(0, userLogged.indexOf('@'))}
             </Text>
             <TouchableOpacity onPress={handleSignOut}>
@@ -69,6 +70,7 @@ const TodoList = () => {
           >
             <View style={styles.items}>
               {taskItems.map((item, index) => (
+                // eslint-disable-next-line react/no-array-index-key
                 <TouchableOpacity key={index} onPress={() => completeTask(index)}>
                   <Task text={item} />
                 </TouchableOpacity>
