@@ -18,10 +18,10 @@ const styles = StyleSheet.create({
     width: '60%',
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 40,
+    marginTop: 20,
   },
   button: {
-    backgroundColor: '#0782F9',
+    backgroundColor: '#4F4F4F',
     width: '70%',
     padding: 10,
     borderRadius: 10,
@@ -35,13 +35,20 @@ const styles = StyleSheet.create({
   buttonOutLine: {
     backgroundColor: 'white',
     marginTop: 5,
-    borderColor: '#0782F9',
+    borderColor: '#4F4F4F',
     borderWidth: 2,
   },
   buttonOutLineText: {
-    color: '#0782F9',
+    color: '#4F4F4F',
     fontWeight: '700',
     fontSize: 16,
+  },
+  loginImage: {
+    backgroundColor: '#4F4F4F',
+    borderRadius: 100,
+    width: 200,
+    height: 200,
+    marginBottom: 20,
   },
 });
 

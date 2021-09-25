@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import {
+  Image,
   View,
   Text,
   TextInput,
@@ -56,6 +57,8 @@ const Login = () => {
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
       style={styles.container}
     >
+      {/* eslint-disable-next-line global-require */}
+      <Image style={styles.loginImage} source={require('../../../assets/adaptive-icon.png')} />
       <View style={styles.inputContainer}>
         <TextInput
           placeholder='Email'

@@ -54,10 +54,11 @@ const styles = StyleSheet.create({
   },
   navWrapper: {
     flexDirection: 'row',
+    justifyContent: 'space-between',
   },
   navButtonContainer: {
     justifyContent: 'center',
-    backgroundColor: '#0782F9',
+    backgroundColor: '#E13333',
     width: '78%',
     padding: 6,
     marginTop: 2,
