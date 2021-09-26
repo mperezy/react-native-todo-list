@@ -11,8 +11,8 @@ import {
 } from 'react-native';
 
 import { useNavigation } from '@react-navigation/native';
+import auth from '@services/firebase';
 import styles from './styles';
-import auth from '../../services/firebase';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -57,8 +57,7 @@ const Login = () => {
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
       style={styles.container}
     >
-      {/* eslint-disable-next-line global-require */}
-      <Image style={styles.loginImage} source={require('../../../assets/adaptive-icon.png')} />
+      <Image style={styles.loginImage} source={require('@assets/adaptive-icon.png')} />
       <View style={styles.inputContainer}>
         <TextInput
           placeholder='Email'

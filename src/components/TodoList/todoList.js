@@ -10,9 +10,9 @@ import {
   ScrollView,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import Task from '@components/Task/task';
+import auth from '@services/firebase';
 import styles from './styles';
-import Task from '../Task/task';
-import auth from '../../services/firebase';
 
 const TodoList = () => {
   const [task, setTask] = useState();
@@ -55,7 +55,7 @@ const TodoList = () => {
       <View style={styles.tasksWrapper}>
         <View style={styles.navWrapper}>
           <Text style={styles.sectionTitle}>
-            Today&apos;s tasks of {userLogged.substring(0, userLogged.indexOf('@'))}
+            Today's tasks of {userLogged.substring(0, userLogged.indexOf('@'))}
           </Text>
           <TouchableOpacity onPress={handleSignOut}>
             <View style={styles.navButtonContainer}>

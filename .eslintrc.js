@@ -25,5 +25,22 @@ module.exports = {
 
     // ignore errors for the react-navigation package
     'react/prop-types': ['error', { ignore: ['navigation', 'navigation.navigate'] }],
+
+    'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
+    'global-require': 0,
+    'react/no-unescaped-entities': 0,
+  },
+  root: true,
+  settings: {
+    'import/resolver': {
+      alias: {
+        map: [
+          ['@components', './src/components'],
+          ['@assets', './assets'],
+          ['@services', './src/services'],
+        ],
+        extensions: ['.ts', '.js', '.jsx', '.json'],
+      },
+    },
   },
 };
