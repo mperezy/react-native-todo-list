@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import {
   KeyboardAvoidingView,
   TouchableOpacity,
@@ -20,7 +20,12 @@ const TodoList = () => {
   const { currentUser } = auth;
   const userLogged = currentUser.email;
 
+  const scrollViewRef = useRef();
   const navigation = useNavigation();
+
+  useEffect(() => {
+    scrollViewRef.current.scrollToEnd({ animating: true });
+  }, [taskItems]);
 
   const handleAddTask = () => {
     Keyboard.dismiss();
@@ -63,6 +68,7 @@ const TodoList = () => {
             </TouchableOpacity>
           </View>
           <ScrollView
+            ref={scrollViewRef}
             contentContainerStyle={{
               flexGrow: 1,
             }}
