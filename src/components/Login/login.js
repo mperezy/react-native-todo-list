@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 
 import { useNavigation } from '@react-navigation/native';
-import auth from '@services/firebase';
+import { auth } from '@services/firebase';
 import styles from './styles';
 
 const Login = () => {

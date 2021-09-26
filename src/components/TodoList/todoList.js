@@ -11,7 +11,8 @@ import {
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import Task from '@components/Task/task';
-import auth from '@services/firebase';
+import { auth } from '@services/firebase';
+import { getTasksByUserId } from '@services/database';
 import styles from './styles';
 
 const TodoList = () => {
@@ -22,6 +23,14 @@ const TodoList = () => {
 
   const scrollViewRef = useRef();
   const navigation = useNavigation();
+
+  useEffect(() => {
+    getTasksByUserId(currentUser.uid)
+      .then((data) => {
+        setTaskItems(data);
+      })
+      .catch((error) => console.log(error));
+  }, []);
 
   useEffect(() => {
     scrollViewRef.current.scrollToEnd({ animating: true });
