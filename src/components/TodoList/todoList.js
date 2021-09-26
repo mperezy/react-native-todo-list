@@ -52,42 +52,35 @@ const TodoList = () => {
 
   return (
     <View style={styles.container}>
-      {/* Added this scroll view to enable scrolling when list gets longer than the page */}
-      <View style={styles.something}>
-        <View style={styles.tasksWrapper}>
-          {/* eslint-disable-next-line react/no-unescaped-entities */}
-          <View style={styles.navWrapper}>
-            <Text style={styles.sectionTitle}>
-              {/* eslint-disable-next-line react/no-unescaped-entities */}
-              Today's tasks of {userLogged.substring(0, userLogged.indexOf('@'))}
-            </Text>
-            <TouchableOpacity onPress={handleSignOut}>
-              <View style={styles.navButtonContainer}>
-                <Text style={styles.navButton}>Sign Out</Text>
-              </View>
-            </TouchableOpacity>
-          </View>
-          <ScrollView
-            ref={scrollViewRef}
-            contentContainerStyle={{
-              flexGrow: 1,
-            }}
-            keyboardShouldPersistTaps='handled'
-          >
-            <View style={styles.items}>
-              {taskItems.map((item, index) => (
-                // eslint-disable-next-line react/no-array-index-key
-                <TouchableOpacity key={index} onPress={() => completeTask(index)}>
-                  <Task text={item} />
-                </TouchableOpacity>
-              ))}
+      <View style={styles.tasksWrapper}>
+        <View style={styles.navWrapper}>
+          <Text style={styles.sectionTitle}>
+            Today&apos;s tasks of {userLogged.substring(0, userLogged.indexOf('@'))}
+          </Text>
+          <TouchableOpacity onPress={handleSignOut}>
+            <View style={styles.navButtonContainer}>
+              <Text style={styles.navButton}>Sign Out</Text>
             </View>
-          </ScrollView>
+          </TouchableOpacity>
         </View>
+        <ScrollView
+          ref={scrollViewRef}
+          contentContainerStyle={{
+            flexGrow: 1,
+          }}
+          keyboardShouldPersistTaps='handled'
+        >
+          <View style={styles.items}>
+            {taskItems.map((item, index) => (
+              // eslint-disable-next-line react/no-array-index-key
+              <TouchableOpacity key={index} onPress={() => completeTask(index)}>
+                <Task text={item} />
+              </TouchableOpacity>
+            ))}
+          </View>
+        </ScrollView>
       </View>
 
-      {/* Write a task */}
-      {/* Uses a keyboard avoiding view which ensures the keyboard does not cover the items on screen */}
       <KeyboardAvoidingView
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
         style={styles.writeTaskWrapper}

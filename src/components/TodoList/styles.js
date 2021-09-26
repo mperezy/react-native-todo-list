@@ -5,12 +5,10 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#EBEAED',
   },
-  something: {
-    marginBottom: 230,
-  },
   tasksWrapper: {
     paddingTop: 20,
     paddingHorizontal: 20,
+    marginBottom: 180,
   },
   sectionTitle: {
     fontSize: 24,

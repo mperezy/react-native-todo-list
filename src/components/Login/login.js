@@ -2,12 +2,12 @@ import React, { useEffect, useState } from 'react';
 
 import {
   Image,
-  View,
+  KeyboardAvoidingView,
+  Platform,
   Text,
   TextInput,
-  KeyboardAvoidingView,
   TouchableOpacity,
-  Platform,
+  View,
 } from 'react-native';
 
 import { useNavigation } from '@react-navigation/native';
@@ -20,14 +20,15 @@ const Login = () => {
 
   const navigation = useNavigation();
 
-  useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((user) => {
-      if (user) {
-        navigation.replace('TodoList');
-      }
-    });
-    return unsubscribe;
-  }, [navigation]);
+  useEffect(
+    () =>
+      auth.onAuthStateChanged((user) => {
+        if (user) {
+          navigation.replace('TodoList');
+        }
+      }),
+    [navigation]
+  );
 
   const handleLogin = () => {
     auth
@@ -48,7 +49,6 @@ const Login = () => {
         setEmail('');
         setPassword('');
       })
-      // eslint-disable-next-line no-undef
       .catch((error) => console.log({ exception: error.message }));
   };
 
