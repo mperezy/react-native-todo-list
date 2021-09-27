@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import Task from '@components/Task/task';
-import { auth } from '@services/firebase';
+import { auth, taskCollection } from '@services/firebase';
 import { useDispatch, useSelector } from 'react-redux';
 import { callFirebase, selectTasks } from '@reduxStore/slices/taskSlice';
 import { clearUserDataFromLS } from '@utils/localStorageFuncs';
@@ -21,8 +21,11 @@ import styles from './styles';
 const TodoList = () => {
   const dispatch = useDispatch();
 
+  /* Refresh automatically the todo list  */
   useEffect(() => {
-    dispatch(callFirebase());
+    taskCollection.onSnapshot(() => {
+      dispatch(callFirebase());
+    });
   }, []);
 
   const userEmail = useSelector(selectUserEmail);

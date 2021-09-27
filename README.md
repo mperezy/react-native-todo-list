@@ -2,6 +2,15 @@
 
 - This repo was built following the YouTube tutorial from [here](https://www.youtube.com/watch?v=0kL6nhutjQ8).
 - Added authentication functionality from the same YouTube channel above from this [video](https://www.youtube.com/watch?v=ql4J6SpLXZA).
+- Added Firebase/Firestore database following official documentation.
+- Added Redux Toolkit and Saga support for app state management.
+- Demo:
+  ![image_info](./assets/todolist-demo.gif)
+* To be added:
+  * Write new task to Firestore database.
+  * Remove an existing task in Firestore database.
+  * Update an existing task in Firestore database.
+
 
 * If for some reason you got an error like:
   ![image info](./assets/error_message.png)
