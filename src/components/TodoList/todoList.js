@@ -12,25 +12,27 @@ import {
 import { useNavigation } from '@react-navigation/native';
 import Task from '@components/Task/task';
 import { auth } from '@services/firebase';
-import { getTasksByUserId } from '@services/database';
+import { useDispatch, useSelector } from 'react-redux';
+import { callFirebase, selectTasks } from '@reduxStore/slices/taskSlice';
+import { clearUserDataFromLS } from '@utils/localStorageFuncs';
+import { selectUserEmail } from '@reduxStore/slices/userSlice';
 import styles from './styles';
 
 const TodoList = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(callFirebase());
+  }, []);
+
+  const userEmail = useSelector(selectUserEmail);
+  const tasks = useSelector(selectTasks);
+
   const [task, setTask] = useState();
   const [taskItems, setTaskItems] = useState([]);
-  const { currentUser } = auth;
-  const userLogged = currentUser.email;
 
   const scrollViewRef = useRef();
   const navigation = useNavigation();
-
-  useEffect(() => {
-    getTasksByUserId(currentUser.uid)
-      .then((data) => {
-        setTaskItems(data);
-      })
-      .catch((error) => console.log(error));
-  }, []);
 
   useEffect(() => {
     scrollViewRef.current.scrollToEnd({ animating: true });
@@ -46,6 +48,7 @@ const TodoList = () => {
     auth
       .signOut()
       .then(() => {
+        clearUserDataFromLS();
         navigation.replace('Login');
       })
       .catch((error) => {
@@ -64,7 +67,7 @@ const TodoList = () => {
       <View style={styles.tasksWrapper}>
         <View style={styles.navWrapper}>
           <Text style={styles.sectionTitle}>
-            Today's tasks of {userLogged.substring(0, userLogged.indexOf('@'))}
+            Today's tasks of {userEmail.substring(0, userEmail.indexOf('@'))}
           </Text>
           <TouchableOpacity onPress={handleSignOut}>
             <View style={styles.navButtonContainer}>
@@ -80,7 +83,7 @@ const TodoList = () => {
           keyboardShouldPersistTaps='handled'
         >
           <View style={styles.items}>
-            {taskItems.map((item, index) => (
+            {tasks.map((item, index) => (
               // eslint-disable-next-line react/no-array-index-key
               <TouchableOpacity key={index} onPress={() => completeTask(index)}>
                 <Task text={item} />

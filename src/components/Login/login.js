@@ -12,6 +12,9 @@ import {
 
 import { useNavigation } from '@react-navigation/native';
 import { auth } from '@services/firebase';
+import { useDispatch } from 'react-redux';
+import { setUserData } from '@reduxStore/slices/userSlice';
+import { setUserData2LS } from '@utils/localStorageFuncs';
 import styles from './styles';
 
 const Login = () => {
@@ -19,6 +22,7 @@ const Login = () => {
   const [password, setPassword] = useState('');
 
   const navigation = useNavigation();
+  const dispatch = useDispatch();
 
   useEffect(
     () =>
@@ -35,7 +39,9 @@ const Login = () => {
       .signInWithEmailAndPassword(email, password)
       .then((userCreds) => {
         const { user } = userCreds;
-        console.log(`Logged in with: ${user.email}`);
+
+        setUserData2LS(user.uid, user.email);
+        dispatch(setUserData({ id: user.uid, email: user.email }));
       })
       .catch((error) => console.log({ exception: error.message }));
   };

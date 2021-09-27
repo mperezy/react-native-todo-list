@@ -35,9 +35,11 @@ module.exports = {
     'import/resolver': {
       alias: {
         map: [
-          ['@components', './src/components'],
           ['@assets', './assets'],
+          ['@components', './src/components'],
+          ['@reduxStore', './src/redux'],
           ['@services', './src/services'],
+          ['@utils', './src/utils'],
         ],
         extensions: ['.ts', '.js', '.jsx', '.json'],
       },

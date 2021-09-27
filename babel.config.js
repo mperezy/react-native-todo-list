@@ -11,7 +11,9 @@ module.exports = (api) => {
           alias: {
             '@assets': './assets',
             '@components': './src/components',
-            '@services': './src//services',
+            '@reduxStore': './src/redux',
+            '@services': './src/services',
+            '@utils': './src/utils',
           },
         },
       ],
