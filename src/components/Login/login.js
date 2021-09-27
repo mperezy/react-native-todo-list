@@ -28,6 +28,7 @@ const Login = () => {
     () =>
       auth.onAuthStateChanged((user) => {
         if (user) {
+          dispatch(setUserData({ id: user.uid, email: user.email }));
           navigation.replace('TodoList');
         }
       }),
