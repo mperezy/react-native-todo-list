@@ -14,9 +14,11 @@ export const taskSlice = createSlice({
     }),
     getTasksFromFirebase: () => {},
     setTask2Firebase: () => {},
+    deleteTaskFromFirebase: () => {},
   },
 });
 
-export const { setTasks, getTasksFromFirebase, setTask2Firebase } = taskSlice.actions;
+export const { setTasks, getTasksFromFirebase, setTask2Firebase, deleteTaskFromFirebase } =
+  taskSlice.actions;
 
 export const selectTasks = (state) => state.task.tasks;

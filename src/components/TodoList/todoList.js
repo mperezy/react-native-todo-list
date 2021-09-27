@@ -13,14 +13,18 @@ import { useNavigation } from '@react-navigation/native';
 import Task from '@components/Task/task';
 import { auth, taskCollection } from '@services/firebase';
 import { useDispatch, useSelector } from 'react-redux';
-import { setTask2Firebase, getTasksFromFirebase, selectTasks } from '@reduxStore/slices/taskSlice';
+import {
+  setTask2Firebase,
+  getTasksFromFirebase,
+  deleteTaskFromFirebase,
+  selectTasks,
+} from '@reduxStore/slices/taskSlice';
 import { clearUserDataFromLS } from '@utils/localStorageFuncs';
 import { selectUserEmail } from '@reduxStore/slices/userSlice';
 import styles from './styles';
 
 const TodoList = () => {
   const [task, setTask] = useState('');
-  const [taskItems, setTaskItems] = useState([]);
 
   const userEmail = useSelector(selectUserEmail);
   const tasks = useSelector(selectTasks);
@@ -38,7 +42,7 @@ const TodoList = () => {
 
   useEffect(() => {
     scrollViewRef.current.scrollToEnd({ animating: true });
-  }, [taskItems]);
+  }, [tasks]);
 
   const handleAddTask = () => {
     if (!['ios', 'android'].includes(Platform.OS)) {
@@ -46,7 +50,6 @@ const TodoList = () => {
     }
     if (task) {
       dispatch(setTask2Firebase({ task }));
-      setTaskItems([...taskItems, task]);
       setTask('');
     } else {
       alert('Please enter a task in text input.');
@@ -65,11 +68,7 @@ const TodoList = () => {
       });
   };
 
-  const completeTask = (index) => {
-    const itemsCopy = [...taskItems];
-    itemsCopy.splice(index, 1);
-    setTaskItems(itemsCopy);
-  };
+  const completeTask = (taskId) => dispatch(deleteTaskFromFirebase({ taskId }));
 
   return (
     <View style={styles.container}>
@@ -92,9 +91,8 @@ const TodoList = () => {
           keyboardShouldPersistTaps='handled'
         >
           <View style={styles.items}>
-            {tasks.map((item, index) => (
-              // eslint-disable-next-line react/no-array-index-key
-              <TouchableOpacity key={index} onPress={() => completeTask(index)}>
+            {tasks.map((item) => (
+              <TouchableOpacity key={item.id} onPress={() => completeTask(item.id)}>
                 <Task text={item.task} />
               </TouchableOpacity>
             ))}

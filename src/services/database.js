@@ -15,6 +15,7 @@ const getTasksByUserId = async (userId) => {
     .then((querySnapshot) =>
       querySnapshot.forEach((doc) =>
         tasks.push({
+          id: doc.id,
           task: doc.data().task,
           createdAt: doc.data().createdAt?.seconds,
         })
@@ -28,7 +29,7 @@ const getTasksByUserId = async (userId) => {
 };
 
 const sendTask2Firebase = async (taskText, userId) => {
-  taskCollection
+  await taskCollection
     .add({
       task: taskText,
       uid: userId,
@@ -38,4 +39,12 @@ const sendTask2Firebase = async (taskText, userId) => {
     .catch(() => console.log('Something went wrong trying to add a new task in database.'));
 };
 
-export { getTasksByUserId, sendTask2Firebase };
+const deleteTaskById = async (taskId) => {
+  await taskCollection
+    .doc(taskId)
+    .delete()
+    .then(() => console.log('A task was deleted from database.'))
+    .catch(() => console.log('Something went wrong trying to delete a task from database.'));
+};
+
+export { getTasksByUserId, sendTask2Firebase, deleteTaskById };
