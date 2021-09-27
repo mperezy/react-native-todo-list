@@ -1,5 +1,5 @@
 import { put, select, call, takeLeading } from 'redux-saga/effects';
-import { callFirebase, setTasks } from '@reduxStore/slices/taskSlice';
+import { getTasksFromFirebase, setTasks } from '@reduxStore/slices/taskSlice';
 import { selectUserId } from '@reduxStore/slices/userSlice';
 import { getTasksByUserId } from '@services/database';
 
@@ -14,4 +14,4 @@ export function* getTasksFlow() {
   }
 }
 
-export const getTasksSaga = [takeLeading(callFirebase.type, getTasksFlow)];
+export const getTasksSaga = [takeLeading(getTasksFromFirebase.type, getTasksFlow)];

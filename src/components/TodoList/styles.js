@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
   tasksWrapper: {
     paddingTop: 20,
     paddingHorizontal: 20,
-    marginBottom: 180,
+    marginBottom: 150,
   },
   sectionTitle: {
     fontSize: 24,
@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
   },
   writeTaskWrapper: {
     position: 'absolute',
-    bottom: 60,
+    bottom: 20,
     width: '100%',
     flexDirection: 'row',
     justifyContent: 'space-around',

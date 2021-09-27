@@ -13,38 +13,44 @@ import { useNavigation } from '@react-navigation/native';
 import Task from '@components/Task/task';
 import { auth, taskCollection } from '@services/firebase';
 import { useDispatch, useSelector } from 'react-redux';
-import { callFirebase, selectTasks } from '@reduxStore/slices/taskSlice';
+import { setTask2Firebase, getTasksFromFirebase, selectTasks } from '@reduxStore/slices/taskSlice';
 import { clearUserDataFromLS } from '@utils/localStorageFuncs';
 import { selectUserEmail } from '@reduxStore/slices/userSlice';
 import styles from './styles';
 
 const TodoList = () => {
+  const [task, setTask] = useState();
+  const [taskItems, setTaskItems] = useState([]);
+
+  const userEmail = useSelector(selectUserEmail);
+  const tasks = useSelector(selectTasks);
   const dispatch = useDispatch();
+
+  const scrollViewRef = useRef();
+  const navigation = useNavigation();
 
   /* Refresh automatically the todo list  */
   useEffect(() => {
     taskCollection.onSnapshot(() => {
-      dispatch(callFirebase());
+      dispatch(getTasksFromFirebase());
     });
   }, []);
-
-  const userEmail = useSelector(selectUserEmail);
-  const tasks = useSelector(selectTasks);
-
-  const [task, setTask] = useState();
-  const [taskItems, setTaskItems] = useState([]);
-
-  const scrollViewRef = useRef();
-  const navigation = useNavigation();
 
   useEffect(() => {
     scrollViewRef.current.scrollToEnd({ animating: true });
   }, [taskItems]);
 
   const handleAddTask = () => {
-    Keyboard.dismiss();
-    setTaskItems([...taskItems, task]);
-    setTask(null);
+    if (!['ios', 'android'].includes(Platform.OS)) {
+      Keyboard.dismiss();
+    }
+    if (task) {
+      dispatch(setTask2Firebase({ task }));
+      setTaskItems([...taskItems, task]);
+      setTask('');
+    } else {
+      alert('Please enter a task in text input.');
+    }
   };
 
   const handleSignOut = () => {

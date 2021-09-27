@@ -44,7 +44,10 @@ const Login = () => {
         setUserData2LS(user.uid, user.email);
         dispatch(setUserData({ id: user.uid, email: user.email }));
       })
-      .catch((error) => console.log({ exception: error.message }));
+      .catch((error) => {
+        alert(error.message);
+        console.log({ exception: error.message });
+      });
   };
 
   const handleSignUp = () => {
@@ -56,7 +59,10 @@ const Login = () => {
         setEmail('');
         setPassword('');
       })
-      .catch((error) => console.log({ exception: error.message }));
+      .catch((error) => {
+        alert(error.message);
+        console.log({ exception: error.message });
+      });
   };
 
   return (

@@ -17,6 +17,15 @@ const getTasksByUserId = async (userId) => {
 
   return tasks;
 };
-const writeTask = async (taskText, userId) => {};
 
-export { getTasksByUserId, writeTask };
+const sendTask2Firebase = async (taskText, userId) => {
+  taskCollection
+    .add({
+      task: taskText,
+      uid: userId,
+    })
+    .then(() => console.log('A new task was added in database.'))
+    .catch(() => console.log('Something went wrong trying to add a new task in database.'));
+};
+
+export { getTasksByUserId, sendTask2Firebase };
