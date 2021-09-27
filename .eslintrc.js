@@ -29,6 +29,7 @@ module.exports = {
     'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
     'global-require': 0,
     'react/no-unescaped-entities': 0,
+    'no-nested-ternary': 0,
   },
   root: true,
   settings: {

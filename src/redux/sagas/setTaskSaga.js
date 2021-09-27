@@ -5,7 +5,6 @@ import { sendTask2Firebase } from '@services/database';
 
 export function* setTaskFlow({ payload }) {
   try {
-    console.log('Im in setTaskFlow');
     const userId = yield select(selectUserId);
     const { task } = payload;
 
@@ -13,7 +12,7 @@ export function* setTaskFlow({ payload }) {
 
     yield put(getTasksFromFirebase());
   } catch (exception) {
-    console.log({ exception });
+    console.log({ source: 'Exception from setTaskSaga', exception });
   }
 }
 

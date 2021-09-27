@@ -19,7 +19,7 @@ import { selectUserEmail } from '@reduxStore/slices/userSlice';
 import styles from './styles';
 
 const TodoList = () => {
-  const [task, setTask] = useState();
+  const [task, setTask] = useState('');
   const [taskItems, setTaskItems] = useState([]);
 
   const userEmail = useSelector(selectUserEmail);
@@ -95,7 +95,7 @@ const TodoList = () => {
             {tasks.map((item, index) => (
               // eslint-disable-next-line react/no-array-index-key
               <TouchableOpacity key={index} onPress={() => completeTask(index)}>
-                <Task text={item} />
+                <Task text={item.task} />
               </TouchableOpacity>
             ))}
           </View>

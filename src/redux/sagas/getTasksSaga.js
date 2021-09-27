@@ -10,7 +10,7 @@ export function* getTasksFlow() {
 
     yield put(setTasks({ tasks }));
   } catch (exception) {
-    console.log({ exception });
+    console.log({ source: 'Exception from getTasksSaga', exception });
   }
 }
 
