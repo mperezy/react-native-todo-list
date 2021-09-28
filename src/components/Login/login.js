@@ -13,7 +13,7 @@ import {
 import { useNavigation } from '@react-navigation/native';
 import { auth } from '@services/firebase';
 import { useDispatch } from 'react-redux';
-import { setUserData } from '@reduxStore/slices/userSlice';
+import { setUserData, unsetUserData } from '@reduxStore/slices/userSlice';
 import { setUserData2LS } from '@utils/localStorageFuncs';
 import styles from './styles';
 
@@ -30,6 +30,8 @@ const Login = () => {
         if (user) {
           dispatch(setUserData({ id: user.uid, email: user.email }));
           navigation.replace('TodoList');
+        } else {
+          dispatch(unsetUserData());
         }
       }),
     [navigation]
@@ -42,7 +44,6 @@ const Login = () => {
         const { user } = userCreds;
 
         setUserData2LS(user.uid, user.email);
-        dispatch(setUserData({ id: user.uid, email: user.email }));
       })
       .catch((error) => {
         alert(error.message);

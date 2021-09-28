@@ -26,6 +26,7 @@ module.exports = {
     // ignore errors for the react-navigation package
     'react/prop-types': ['error', { ignore: ['navigation', 'navigation.navigate'] }],
 
+    'react-hooks/exhaustive-deps': 'warn',
     'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
     'global-require': 0,
     'react/no-unescaped-entities': 0,

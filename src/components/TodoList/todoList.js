@@ -18,6 +18,7 @@ import {
   getTasksFromFirebase,
   deleteTaskFromFirebase,
   selectTasks,
+  unsetTasks,
 } from '@reduxStore/slices/taskSlice';
 import { clearUserDataFromLS } from '@utils/localStorageFuncs';
 import { selectUserEmail } from '@reduxStore/slices/userSlice';
@@ -27,6 +28,7 @@ const TodoList = () => {
   const [task, setTask] = useState('');
 
   const userEmail = useSelector(selectUserEmail);
+  const userName = userEmail ? userEmail.substring(0, userEmail.indexOf('@')) : '';
   const tasks = useSelector(selectTasks);
   const dispatch = useDispatch();
 
@@ -61,6 +63,7 @@ const TodoList = () => {
       .signOut()
       .then(() => {
         clearUserDataFromLS();
+        dispatch(unsetTasks());
         navigation.replace('Login');
       })
       .catch((error) => {
@@ -74,9 +77,7 @@ const TodoList = () => {
     <View style={styles.container}>
       <View style={styles.tasksWrapper}>
         <View style={styles.navWrapper}>
-          <Text style={styles.sectionTitle}>
-            Today's tasks of {userEmail.substring(0, userEmail.indexOf('@'))}
-          </Text>
+          <Text style={styles.sectionTitle}>Today's tasks of {userName}</Text>
           <TouchableOpacity onPress={handleSignOut}>
             <View style={styles.navButtonContainer}>
               <Text style={styles.navButton}>Sign Out</Text>

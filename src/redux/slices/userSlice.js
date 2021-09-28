@@ -16,10 +16,13 @@ export const userSlice = createSlice({
       id: payload.id,
       email: payload.email,
     }),
+    unsetUserData: () => ({
+      ...initialState,
+    }),
   },
 });
 
-export const { setUserData } = userSlice.actions;
+export const { setUserData, unsetUserData } = userSlice.actions;
 
 export const selectUserId = (state) => state.user.id;
 export const selectUserEmail = (state) => state.user.email;
