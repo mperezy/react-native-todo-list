@@ -1,5 +1,5 @@
-import { put, call, takeLeading } from 'redux-saga/effects';
-import { getTasksFromFirebase, deleteTaskFromFirebase } from '@reduxStore/slices/taskSlice';
+import { call, takeLeading } from 'redux-saga/effects';
+import { deleteTaskFromFirebase } from '@reduxStore/slices/taskSlice';
 import { deleteTaskById } from '@services/database';
 
 export function* deleteTaskFlow({ payload }) {
@@ -7,7 +7,6 @@ export function* deleteTaskFlow({ payload }) {
     const { taskId } = payload;
 
     yield call(deleteTaskById, taskId);
-    yield put(getTasksFromFirebase());
   } catch (exception) {
     console.log({ source: 'Exception from deleteTaskSaga', exception });
   }

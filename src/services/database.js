@@ -17,7 +17,7 @@ const getTasksByUserId = async (userId) => {
         tasks.push({
           id: doc.id,
           task: doc.data().task,
-          createdAt: doc.data().createdAt?.seconds,
+          createdAt: doc.data().createdAt,
         })
       )
     )
@@ -33,7 +33,7 @@ const sendTask2Firebase = async (taskText, userId) => {
     .add({
       task: taskText,
       uid: userId,
-      createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+      createdAt: new Date().getTime(),
     })
     .then(() => console.log('A new task was added in database.'))
     .catch(() => console.log('Something went wrong trying to add a new task in database.'));
