@@ -15,8 +15,10 @@ const firebaseConfig = {
   appId: process.env.FIREBASE_APP_ID,
 };
 
+const appLength = firebase.apps.length;
+
 // eslint-disable-next-line no-unused-vars
-const app = firebase.apps.length === 0 ? firebase.initializeApp(firebaseConfig) : firebase.app();
+const app = appLength === 0 ? firebase.initializeApp(firebaseConfig) : firebase.app();
 const database = firebase.firestore(app);
 
 export const auth = firebase.auth();
