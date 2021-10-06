@@ -1,5 +1,4 @@
-import { taskCollection } from '@services/firebase';
-import firebase from 'firebase';
+import { taskCollection } from 'src/services/firebase';
 
 const sortBy = (obj1, obj2, field, kind) => {
   const x = kind === 'asc' ? 1 : -1;

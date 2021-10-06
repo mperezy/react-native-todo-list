@@ -3,7 +3,7 @@ module.exports = {
     es2021: true,
     node: true,
   },
-  extends: ['plugin:react/recommended', 'airbnb', 'airbnb/hooks', 'prettier'],
+  extends: ['eslint:recommended', 'plugin:react/recommended', 'prettier'],
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
@@ -26,25 +26,10 @@ module.exports = {
     // ignore errors for the react-navigation package
     'react/prop-types': ['error', { ignore: ['navigation', 'navigation.navigate'] }],
 
-    'react-hooks/exhaustive-deps': 'warn',
-    'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
+    'react-hooks/exhaustive-deps': 0,
+    'import/no-extraneous-dependencies': 0,
     'global-require': 0,
     'react/no-unescaped-entities': 0,
     'no-nested-ternary': 0,
-  },
-  root: true,
-  settings: {
-    'import/resolver': {
-      alias: {
-        map: [
-          ['@assets', './assets'],
-          ['@components', './src/components'],
-          ['@reduxStore', './src/redux'],
-          ['@services', './src/services'],
-          ['@utils', './src/utils'],
-        ],
-        extensions: ['.ts', '.js', '.jsx', '.json'],
-      },
-    },
   },
 };

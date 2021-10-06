@@ -11,10 +11,10 @@ import {
 } from 'react-native';
 
 import { useNavigation } from '@react-navigation/native';
-import { auth } from '@services/firebase';
+import { auth } from 'src/services/firebase';
 import { useDispatch } from 'react-redux';
-import { setUserData, unsetUserData } from '@reduxStore/slices/userSlice';
-import { setUserData2LS } from '@utils/localStorageFuncs';
+import { setUserData, unsetUserData } from 'src/redux/slices/userSlice';
+import { setUserData2LS } from 'src/utils/localStorageFuncs';
 import styles from './styles';
 
 const Login = () => {
@@ -28,7 +28,7 @@ const Login = () => {
     () =>
       auth.onAuthStateChanged((user) => {
         if (user) {
-          dispatch(setUserData({ id: user.uid, email: user.email }));
+          dispatch(setUserData({ id: user.uid, email: user.email }, {}));
           navigation.replace('TodoList');
         } else {
           dispatch(unsetUserData());
@@ -71,7 +71,7 @@ const Login = () => {
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
       style={styles.container}
     >
-      <Image style={styles.loginImage} source={require('@assets/adaptive-icon.png')} />
+      <Image style={styles.loginImage} source={require('assets/adaptive-icon.png')} />
       <View style={styles.inputContainer}>
         <TextInput
           placeholder='Email'

@@ -8,13 +8,6 @@ module.exports = (api) => {
         'module-resolver',
         {
           root: ['.'],
-          alias: {
-            '@assets': './assets',
-            '@components': './src/components',
-            '@reduxStore': './src/redux',
-            '@services': './src/services',
-            '@utils': './src/utils',
-          },
         },
       ],
     ],

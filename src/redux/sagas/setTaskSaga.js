@@ -1,7 +1,7 @@
 import { select, call, takeLeading } from 'redux-saga/effects';
-import { setTask2Firebase } from '@reduxStore/slices/taskSlice';
-import { selectUserId } from '@reduxStore/slices/userSlice';
-import { sendTask2Firebase } from '@services/database';
+import { setTask2Firebase } from 'src/redux/slices/taskSlice';
+import { selectUserId } from 'src/redux/slices/userSlice';
+import { sendTask2Firebase } from 'src/services/database';
 
 export function* setTaskFlow({ payload }) {
   try {

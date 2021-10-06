@@ -1,6 +1,6 @@
 import { call, takeLeading } from 'redux-saga/effects';
-import { deleteTaskFromFirebase } from '@reduxStore/slices/taskSlice';
-import { deleteTaskById } from '@services/database';
+import { deleteTaskFromFirebase } from 'src/redux/slices/taskSlice';
+import { deleteTaskById } from 'src/services/database';
 
 export function* deleteTaskFlow({ payload }) {
   try {

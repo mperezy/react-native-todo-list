@@ -10,8 +10,7 @@ import {
   ScrollView,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import Task from '@components/Task/task';
-import { auth, taskCollection } from '@services/firebase';
+import Task from 'src/components/Task/task';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   setTask2Firebase,
@@ -19,9 +18,10 @@ import {
   deleteTaskFromFirebase,
   selectTasks,
   unsetTasks,
-} from '@reduxStore/slices/taskSlice';
-import { clearUserDataFromLS } from '@utils/localStorageFuncs';
-import { selectUserEmail } from '@reduxStore/slices/userSlice';
+} from 'src/redux/slices/taskSlice';
+import { clearUserDataFromLS } from 'src/utils/localStorageFuncs';
+import { selectUserEmail } from 'src/redux/slices/userSlice';
+import { auth, taskCollection } from '/src/services/firebase';
 import styles from './styles';
 
 const TodoList = () => {
